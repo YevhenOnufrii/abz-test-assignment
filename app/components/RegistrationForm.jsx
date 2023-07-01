@@ -13,8 +13,8 @@ import UploadInput from './UploadInput'
 export default function RegistrationForm() {
   const [positionsList, setPositionsList] = useState([])
   const [registrationError, setRegistrationError] = useState('')
-  const [modal, setModal] = useState(false)
 
+  const [modal, setModal] = useState(false)
   const toggleModal = () => {
     setModal(!modal)
     document.body.classList.toggle('modal-active')
@@ -40,7 +40,6 @@ export default function RegistrationForm() {
     const post = async url => {
       setRegistrationError('')
       const token = await getToken(_data.url.token)
-      console.log(token)
       const config = {
         method: 'POST',
         headers: {
@@ -60,7 +59,6 @@ export default function RegistrationForm() {
         }
         // open modal window if response is ok
         if (response.ok) toggleModal()
-        // const data = await response.json()
         // clear form fields
         resetForm({ values: '' })
       } catch (error) {
@@ -69,7 +67,7 @@ export default function RegistrationForm() {
     }
     post(_data.url.post)
   }
-
+  // formik helpers
   const {
     values,
     handleChange,
@@ -92,52 +90,6 @@ export default function RegistrationForm() {
     onSubmit,
   })
 
-  const userNameProps = {
-    type: 'text',
-    id: 'name',
-    placeholder: 'Your name',
-    value: values.name,
-    onChange: handleChange,
-    onBlur: handleBlur,
-    errors: errors,
-    touched: touched,
-  }
-  const emailInputProps = {
-    type: 'email',
-    id: 'email',
-    placeholder: 'Email',
-    value: values.email,
-    onChange: handleChange,
-    onBlur: handleBlur,
-    errors: errors,
-    touched: touched,
-  }
-  const phoneInputProps = {
-    type: 'tel',
-    id: 'phone',
-    placeholder: 'Phone',
-    label: '+38 (XXX) XXX - XX - XX',
-    value: values.phone,
-    onChange: handleChange,
-    onBlur: handleBlur,
-    errors: errors,
-    touched: touched,
-  }
-  const uploadInpProps = {
-    type: 'file',
-    id: 'photo',
-    placeholder: 'Upload your photo',
-    accept: 'image/*',
-    onChange: handleChange,
-    onBlur: handleBlur,
-    errors: errors,
-    setFieldValue,
-  }
-  const submitBtnProps = {
-    type: 'submit',
-    title: 'Sign up',
-  }
-
   return (
     <Container>
       <form
@@ -145,9 +97,36 @@ export default function RegistrationForm() {
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col gap-y-12 mb-4">
-          <Input {...userNameProps} />
-          <Input {...emailInputProps} />
-          <Input {...phoneInputProps} />
+          <Input
+            {...{
+              ..._data.input.userNameProps,
+              value: values.name,
+              onChange: handleChange,
+              onBlur: handleBlur,
+              errors: errors,
+              touched: touched,
+            }}
+          />
+          <Input
+            {...{
+              ..._data.input.emailProps,
+              value: values.email,
+              onChange: handleChange,
+              onBlur: handleBlur,
+              errors: errors,
+              touched: touched,
+            }}
+          />
+          <Input
+            {...{
+              ..._data.input.phoneProps,
+              value: values.phone,
+              onChange: handleChange,
+              onBlur: handleBlur,
+              errors: errors,
+              touched: touched,
+            }}
+          />
         </div>
         <div className="radio-btns flex flex-col gap-3 mb-12">
           <p className="radio-bts-title">Select your position</p>
@@ -166,12 +145,20 @@ export default function RegistrationForm() {
             />
           ))}
         </div>
-        <UploadInput {...uploadInpProps} />
+        <UploadInput
+          {...{
+            ..._data.input.uploadProps,
+            onChange: handleChange,
+            onBlur: handleBlur,
+            errors: errors,
+            setFieldValue,
+          }}
+        />
         {registrationError && (
           <p className="text-center text-red-600 text-base mt-[-20px] mb-7 ">{registrationError}</p>
         )}
         <div className="text-center">
-          <ButtonPrimary {...{ ...submitBtnProps, disabled: !isValid }} />
+          <ButtonPrimary {...{ type: 'submit', title: 'Sign up', disabled: !isValid }} />
         </div>
         {modal && <ModalSuccessReg toggleModal={toggleModal} />}
       </form>
