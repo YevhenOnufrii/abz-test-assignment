@@ -2,7 +2,7 @@ import { _data } from '@/data'
 import { useFormik } from 'formik'
 import { useEffect, useState } from 'react'
 import { validSchema } from '../schemas'
-import { getPositions } from '../utils/getPositions_async'
+import { getPositions, getToken } from '../utils/helpers_async'
 import ButtonPrimary from './ButtonPrimary'
 import Container from './Container'
 import Input from './Input'
@@ -20,24 +20,6 @@ export default function RegistrationForm() {
     document.body.classList.toggle('modal-active')
   }
 
-  // useEffect(() => {
-  //   try {
-  //     const getPositions = async url => {
-  //       const response = await fetch(url)
-  //       if (!response.ok) {
-  //         const msg = `There was error " ${response.status} ${response.statusText} "`
-
-  //         throw new Error(msg)
-  //       }
-  //       const data = await response.json()
-  //       setPositionsList(data.positions)
-  //     }
-  //     getPositions(_data.url.positions)
-  //   } catch (error) {
-  //     console.log(error.message, 'getPositions')
-  //   }
-  // }, [])
-
   // get position list
   useEffect(() => {
     const positions = async () => {
@@ -47,24 +29,7 @@ export default function RegistrationForm() {
     positions()
   }, [])
 
-  const getToken = async url => {
-    try {
-      const response = await fetch(url)
-      if (!response.ok) {
-        const msg = `There was an error: ${response.status}, ${response.statusText}`
-        throw new Error(msg)
-      }
-      const data = await response.json()
-      const token = await data.token
-
-      return token
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
-
   const onSubmit = () => {
-    values.position_id = parseInt(values.position_id)
     const formData = new FormData()
     formData.append('name', values.name)
     formData.append('email', values.email)
@@ -75,6 +40,7 @@ export default function RegistrationForm() {
     const post = async url => {
       setRegistrationError('')
       const token = await getToken(_data.url.token)
+      console.log(token)
       const config = {
         method: 'POST',
         headers: {
