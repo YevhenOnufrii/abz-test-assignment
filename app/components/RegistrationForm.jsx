@@ -2,6 +2,7 @@ import { _data } from '@/data'
 import { useFormik } from 'formik'
 import { useEffect, useState } from 'react'
 import { validSchema } from '../schemas'
+import { getPositions } from '../utils/getPositions_async'
 import ButtonPrimary from './ButtonPrimary'
 import Container from './Container'
 import Input from './Input'
@@ -16,26 +17,34 @@ export default function RegistrationForm() {
 
   const toggleModal = () => {
     setModal(!modal)
-    // document.body.className = 'modal-active'
     document.body.classList.toggle('modal-active')
   }
 
-  useEffect(() => {
-    try {
-      const getPositions = async url => {
-        const response = await fetch(url)
-        if (!response.ok) {
-          const msg = `There was error " ${response.status} ${response.statusText} "`
+  // useEffect(() => {
+  //   try {
+  //     const getPositions = async url => {
+  //       const response = await fetch(url)
+  //       if (!response.ok) {
+  //         const msg = `There was error " ${response.status} ${response.statusText} "`
 
-          throw new Error(msg)
-        }
-        const data = await response.json()
-        setPositionsList(data.positions)
-      }
-      getPositions(_data.url.positions)
-    } catch (error) {
-      console.log(error.message, 'getPositions')
+  //         throw new Error(msg)
+  //       }
+  //       const data = await response.json()
+  //       setPositionsList(data.positions)
+  //     }
+  //     getPositions(_data.url.positions)
+  //   } catch (error) {
+  //     console.log(error.message, 'getPositions')
+  //   }
+  // }, [])
+
+  // get position list
+  useEffect(() => {
+    const positions = async () => {
+      const data = await getPositions(_data.url.positions)
+      setPositionsList(data)
     }
+    positions()
   }, [])
 
   const getToken = async url => {
@@ -79,12 +88,14 @@ export default function RegistrationForm() {
           const msg = `There was an error: ${response.status}, ${response.statusText}`
           const errorData = await response.json()
           const errorMsg = await errorData.message
+          // print error message for user
           setRegistrationError(errorMsg)
           throw new Error(msg)
         }
         // open modal window if response is ok
         if (response.ok) toggleModal()
-        const data = await response.json()
+        // const data = await response.json()
+        // clear form fields
         resetForm({ values: '' })
       } catch (error) {
         console.log(error.message)
@@ -114,6 +125,7 @@ export default function RegistrationForm() {
     validationSchema: validSchema,
     onSubmit,
   })
+
   const userNameProps = {
     type: 'text',
     id: 'name',
