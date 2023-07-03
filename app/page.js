@@ -1,4 +1,3 @@
-import bgImage from './assets/img/bg_image.jpg'
 import Header from './components/Header.jsx'
 import Main from './components/Main.jsx'
 import Registration from './components/Registration'
@@ -9,7 +8,7 @@ export default function Home() {
   return (
     <Wrapper>
       <Header />
-      <Main bgImage={bgImage} />
+      <Main />
       <Users />
       <Registration />
     </Wrapper>

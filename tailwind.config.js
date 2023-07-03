@@ -14,6 +14,11 @@ module.exports = {
     screens: {
       phone: '370px',
     },
+    colors: {
+      primary: '#F4E041',
+      secondary: '#00BDD3',
+      btn_disabled: '#B4B4B4',
+    },
   },
   plugins: [],
 }

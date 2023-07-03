@@ -11,6 +11,7 @@ body {
   font-size: 16px;
   font-weight: 400;
   scroll-behavior: smooth;
+  background-color: #f8f8f8;
 }
 
 .modal-active {
@@ -26,7 +27,7 @@ input[id='photo'] {
 }
 
 .input-box input:focus ~ span {
-  @apply px-3 top-[-9px] overflow-hidden bg-white text-xs tracking-wide;
+  @apply px-3 top-[-9px] overflow-hidden bg-[white] text-xs tracking-wide;
 }
 
 .modal {
