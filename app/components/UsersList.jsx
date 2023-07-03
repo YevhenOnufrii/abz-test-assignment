@@ -3,11 +3,13 @@ import { _data } from '@/data'
 import { useEffect, useState } from 'react'
 import ButtonPrimary from './ButtonPrimary'
 import Container from './Container'
+import Preloader from './Preloader'
 import User from './User'
 
 export default function UsersList() {
   const [usersList, setUsersList] = useState([])
   const [visible, setVisible] = useState(6)
+  const [loading, setLoading] = useState(true)
   const buttonProps = {
     title: 'Show more',
     onClick: e => showMoreUsers(e),
@@ -21,6 +23,7 @@ export default function UsersList() {
           const msg = `There was an error "${resp.status} ${resp.statusText}"`
           throw new Error(msg)
         }
+        setLoading(false)
         const data = await resp.json()
         const usersArr = [...data.users].sort(
           (a, b) => a.registration_timestamp - b.registration_timestamp
@@ -46,6 +49,7 @@ export default function UsersList() {
         >
           Working with GET request
         </h2>
+        {loading && <Preloader />}
         <div className="users-list p-[20px] flex flex-row items-center justify-center  flex-wrap gap-[20px] mb-[50px]">
           {usersList.slice(0, visible).map(el => (
             <User key={el.id} props={{ ...el }} />

@@ -59,3 +59,25 @@ input[id='photo'] {
     opacity: 1;
   }
 }
+
+/* PRELOADER */
+
+#preloader {
+  margin: 20px auto;
+  height: 30px;
+  width: 30px;
+  /* margin: 40vh auto; */
+  border: 5px solid rgba(60, 60, 180, 0.45);
+  border-top: 5px solid rgb(60, 60, 180);
+  border-radius: 50%;
+  animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
