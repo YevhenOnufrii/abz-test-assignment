@@ -10,7 +10,7 @@ export default function Users() {
   const [visible, setVisible] = useState(6)
   const buttonProps = {
     title: 'Show more',
-    onClick: () => showMoreUsers(),
+    onClick: e => showMoreUsers(e),
   }
 
   useEffect(() => {
@@ -32,14 +32,18 @@ export default function Users() {
       console.log(error.message)
     }
   }, [])
-  const showMoreUsers = () => {
+  const showMoreUsers = event => {
+    event.preventDefault()
     setVisible(prevVal => prevVal + 6)
   }
 
   return (
     <Container>
       <div className="users text-center mb-[140px]">
-        <h2 className="users-title text-[40px] px-[20px] leading-[1] text-center mb-[50px]">
+        <h2
+          id="usersList"
+          className="users-title text-[40px] px-[20px] leading-[1] text-center mb-[50px]"
+        >
           Working with GET request
         </h2>
         <div className="users-list p-[20px] flex flex-row items-center justify-center  flex-wrap gap-[20px] mb-[50px]">

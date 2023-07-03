@@ -7,16 +7,6 @@ import ButtonPrimary from './ButtonPrimary'
 import Container from './Container'
 
 export default function Header() {
-  const buttonsProps = {
-    users: {
-      type: 'button',
-      title: 'Users',
-    },
-    signUp: {
-      type: 'button',
-      title: 'Sign up',
-    },
-  }
   return (
     <Container>
       <header className="header w-[100%] h-[60px] px-[10px] ">
@@ -29,9 +19,9 @@ export default function Header() {
               </Link>
             </div>
           </div>
-          <div className="menu-btns flex gap-3 max-[370px]:gap-1">
-            <ButtonPrimary {...buttonsProps.users} />
-            <ButtonPrimary {...buttonsProps.signUp} />
+          <div className="menu-btns flex gap-3 text-center max-[370px]:gap-1">
+            <ButtonPrimary {...{ title: 'Users', href: '#usersList' }} />
+            <ButtonPrimary {...{ title: 'Sign up', href: '#name' }} />
           </div>
         </nav>
       </header>

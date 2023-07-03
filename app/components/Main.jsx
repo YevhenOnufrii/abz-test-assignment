@@ -22,7 +22,7 @@ export default function Main({ bgImage }) {
             interfaces with accessibility in mind. They should also be excited to learn, as the
             world of Front-End Development keeps evolving.{' '}
           </h2>
-          <ButtonPrimary title={'Sign up'} />
+          <ButtonPrimary {...{ title: 'Sign up', href: '#name' }} />
         </div>
       </div>
     </div>
