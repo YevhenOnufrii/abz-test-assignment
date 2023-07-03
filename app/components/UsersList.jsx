@@ -5,7 +5,7 @@ import ButtonPrimary from './ButtonPrimary'
 import Container from './Container'
 import User from './User'
 
-export default function Users() {
+export default function UsersList() {
   const [usersList, setUsersList] = useState([])
   const [visible, setVisible] = useState(6)
   const buttonProps = {
