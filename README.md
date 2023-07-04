@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js] project bootstrapped with [`create-next-app`]
 
 ## Getting Started
 
@@ -12,5 +12,22 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Technology, libraries
+
+1. Next.js
+2. React.js
+3. TailwindCss
+4. Formik
+5. Yup
+6. eslint
+
+## Test assignment
+
+# Working with REST API (GET).
+
+1. Implement the “Working with a GET request” block according to the mockup and API
+   documentation. Display 6 users on the API request result page. The "Show more" button
+   should be hidden when the last page of API query results is reached. Users are sorted by
+   registration date (the newest first).
+2. To display radio buttons on the registration form, use the GET /positions method from the API
+   documentation.

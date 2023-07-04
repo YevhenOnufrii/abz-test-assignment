@@ -38,6 +38,7 @@ export default function RegistrationForm() {
     formData.append('photo', values.photo)
 
     const post = async url => {
+      // clear regErrors
       setRegistrationError('')
       const token = await getToken(_data.url.token)
       const config = {
