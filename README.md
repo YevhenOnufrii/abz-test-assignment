@@ -1,5 +1,7 @@
 This is a [Next.js] project bootstrapped with [`create-next-app`]
 
+https://yevhenonufrii.github.io/abz-test-assignment/
+
 ## Technology, libraries
 
 1. Next.js
