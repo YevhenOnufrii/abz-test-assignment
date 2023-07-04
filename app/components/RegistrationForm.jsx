@@ -3,11 +3,11 @@ import { useFormik } from 'formik'
 import { useEffect, useState } from 'react'
 import { validSchema } from '../schemas'
 import { getPositions, getToken } from '../utils/helpers_async'
-import ButtonPrimary from './ButtonPrimary'
 import Container from './Container'
 import Input from './Input'
 import ModalSuccessReg from './ModalSuccessReg'
 import RadioButton from './RadioButton'
+import SubmitBtn from './SubmitBtn'
 import UploadInput from './UploadInput'
 
 export default function RegistrationForm() {
@@ -159,7 +159,7 @@ export default function RegistrationForm() {
           <p className="text-center text-red-600 text-base mt-[-20px] mb-7 ">{registrationError}</p>
         )}
         <div className="text-center">
-          <ButtonPrimary {...{ type: 'submit', title: 'Sign up', disabled: !isValid }} />
+          <SubmitBtn {...{ title: 'Sign up', disabled: !isValid }} />
         </div>
         {modal && <ModalSuccessReg toggleModal={toggleModal} />}
       </form>
