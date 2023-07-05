@@ -20,8 +20,8 @@ export default function Header() {
             </div>
           </div>
           <div className="menu-btns flex gap-3 text-center max-[370px]:gap-1">
-            <ButtonPrimary {...{ title: 'Users', href: '#usersList' }} />
-            <ButtonPrimary {...{ title: 'Sign up', href: '#name' }} />
+            <ButtonPrimary {...{ title: 'Users', anchor: '#usersList' }} />
+            <ButtonPrimary {...{ title: 'Sign up', anchor: '#name' }} />
           </div>
         </nav>
       </header>
