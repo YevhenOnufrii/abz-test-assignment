@@ -23,7 +23,7 @@ export default function Main() {
             interfaces with accessibility in mind. They should also be excited to learn, as the
             world of Front-End Development keeps evolving.
           </h2>
-          <ButtonPrimary {...{ title: 'Sign up', href: '#name' }} />
+          <ButtonPrimary {...{ title: 'Sign up', anchor: '#name' }} />
         </div>
       </div>
     </div>
