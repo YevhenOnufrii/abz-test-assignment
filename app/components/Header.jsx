@@ -1,8 +1,11 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import logo from '../assets/img/logo.png'
 
 import React from 'react'
+import { scrollTo } from '../utils/scrollTo'
 import ButtonPrimary from './ButtonPrimary'
 import Container from './Container'
 
@@ -20,8 +23,8 @@ export default function Header() {
             </div>
           </div>
           <div className="menu-btns flex gap-3 text-center max-[370px]:gap-1">
-            <ButtonPrimary {...{ title: 'Users', anchor: '#usersList' }} />
-            <ButtonPrimary {...{ title: 'Sign up', anchor: '#name' }} />
+            <ButtonPrimary {...{ title: 'Users', onClick: e => scrollTo(e, '#usersList') }} />
+            <ButtonPrimary {...{ title: 'Sign up', onClick: e => scrollTo(e, '#name') }} />
           </div>
         </nav>
       </header>

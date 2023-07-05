@@ -1,5 +1,7 @@
+'use client'
 import Image from 'next/image'
 import bgImage from '../assets/img/bg_image.jpg'
+import { scrollTo } from '../utils/scrollTo'
 import ButtonPrimary from './ButtonPrimary'
 
 export default function Main() {
@@ -23,7 +25,7 @@ export default function Main() {
             interfaces with accessibility in mind. They should also be excited to learn, as the
             world of Front-End Development keeps evolving.
           </h2>
-          <ButtonPrimary {...{ title: 'Sign up', anchor: '#name' }} />
+          <ButtonPrimary {...{ title: 'Sign up', onClick: e => scrollTo(e, '#name') }} />
         </div>
       </div>
     </div>

@@ -10,9 +10,14 @@ export default function UsersList() {
   const [usersList, setUsersList] = useState([])
   const [visible, setVisible] = useState(6)
   const [loading, setLoading] = useState(true)
+
   const buttonProps = {
     title: 'Show more',
     onClick: e => showMoreUsers(e),
+  }
+  const showMoreUsers = event => {
+    event.preventDefault()
+    setVisible(prevVal => prevVal + 6)
   }
 
   useEffect(() => {
@@ -35,10 +40,6 @@ export default function UsersList() {
       console.log(error.message)
     }
   }, [])
-  const showMoreUsers = event => {
-    event.preventDefault()
-    setVisible(prevVal => prevVal + 6)
-  }
 
   return (
     <Container>

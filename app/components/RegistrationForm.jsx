@@ -159,7 +159,7 @@ export default function RegistrationForm() {
           <p className="text-center text-red-600 text-base mt-[-20px] mb-7 ">{registrationError}</p>
         )}
         <div className="text-center">
-          <SubmitBtn {...{ title: 'Sign up', disabled: !isValid }} />
+          <SubmitBtn {...{ title: 'Sign up', type: 'submit', disabled: !isValid }} />
         </div>
         {modal && <ModalSuccessReg toggleModal={toggleModal} />}
       </form>
